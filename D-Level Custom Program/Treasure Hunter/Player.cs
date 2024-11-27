@@ -17,16 +17,16 @@ namespace Treasure_Hunter
             Coins = 100; // Starting coins
         }
 
+        // Method to check if an item is in the player's inventory
+        public bool HasItem(string itemName)
+        {
+            return Inventory.Any(item => item.Name.Equals(itemName, StringComparison.OrdinalIgnoreCase));
+        }
+
+        // Add an item to the player's inventory
         public void AddToInventory(ICollectible item)
         {
             Inventory.Add(item);
-        }
-
-        public bool HasItem(string itemName)
-        {
-            return Inventory.Any(item =>
-                item.Name.Equals(itemName, StringComparison.OrdinalIgnoreCase)
-            );
         }
 
 

@@ -48,7 +48,6 @@
 /Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Porfolio/Distinction/6.4D/D-Level Custom Program/Treasure Hunter/bin/Debug/net7.0/Treasure Hunter.runtimeconfig.json
 /Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Porfolio/Distinction/6.4D/D-Level Custom Program/Treasure Hunter/bin/Debug/net7.0/Treasure Hunter.dll
 /Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Porfolio/Distinction/6.4D/D-Level Custom Program/Treasure Hunter/bin/Debug/net7.0/Treasure Hunter.pdb
-/Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Porfolio/Distinction/6.4D/D-Level Custom Program/Treasure Hunter/obj/Debug/net7.0/Treasure Hunter.csproj.AssemblyReference.cache
 /Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Porfolio/Distinction/6.4D/D-Level Custom Program/Treasure Hunter/obj/Debug/net7.0/Treasure Hunter.GeneratedMSBuildEditorConfig.editorconfig
 /Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Porfolio/Distinction/6.4D/D-Level Custom Program/Treasure Hunter/obj/Debug/net7.0/Treasure Hunter.AssemblyInfoInputs.cache
 /Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Porfolio/Distinction/6.4D/D-Level Custom Program/Treasure Hunter/obj/Debug/net7.0/Treasure Hunter.AssemblyInfo.cs
@@ -58,3 +57,4 @@
 /Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Porfolio/Distinction/6.4D/D-Level Custom Program/Treasure Hunter/obj/Debug/net7.0/Treasure Hunter.pdb
 /Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Porfolio/Distinction/6.4D/D-Level Custom Program/Treasure Hunter/obj/Debug/net7.0/Treasure Hunter.genruntimeconfig.cache
 /Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Porfolio/Distinction/6.4D/D-Level Custom Program/Treasure Hunter/obj/Debug/net7.0/ref/Treasure Hunter.dll
+/Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Porfolio/Distinction/6.4D/D-Level Custom Program/Treasure Hunter/obj/Debug/net7.0/Treasure Hunter.sourcelink.json

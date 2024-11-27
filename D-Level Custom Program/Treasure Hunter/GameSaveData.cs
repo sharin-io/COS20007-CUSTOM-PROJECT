@@ -22,7 +22,7 @@ namespace Treasure_Hunter
 
         private List<Country> Countries => _countryProgression.GetAllCountries();
 
-        public void SaveCurrentGame()
+        public void SaveCurrentGame(string saveFilePath = null)
         {
             try
             {
@@ -39,14 +39,18 @@ namespace Treasure_Hunter
                     SaveDate = DateTime.Now
                 };
 
-                string saveFileName = $"{Player.Name}_{DateTime.Now:yyyyMMdd_HHmmss}.json";
-                string savePath = Path.Combine(SAVE_DIRECTORY, saveFileName);
+                // If a save file path is provided, use it. Otherwise, create a new one.
+                string savePath = saveFilePath ?? Path.Combine(SAVE_DIRECTORY, $"{Player.Name}_Save.json");
 
                 string jsonString = JsonSerializer.Serialize(saveData, new JsonSerializerOptions
                 {
                     WriteIndented = true
                 });
+
+                // Overwrite the existing save file
                 File.WriteAllText(savePath, jsonString);
+
+                Console.WriteLine("Game saved successfully!");
             }
             catch (Exception ex)
             {
@@ -54,6 +58,8 @@ namespace Treasure_Hunter
                 throw;
             }
         }
+
+
 
         public List<string> GetSavedGames()
         {
@@ -109,7 +115,7 @@ namespace Treasure_Hunter
                         // Create new player
                         _player = new Player(saveData.PlayerName);
 
-                        // Set current country first
+                        // Set current country
                         _currentCountry = _countryProgression.GetCountryByName(saveData.CurrentCountry);
                         if (_currentCountry == null)
                         {
@@ -133,6 +139,17 @@ namespace Treasure_Hunter
                                         shop.RemoveItem(shopItem);
                                     }
                                 }
+                            }
+                        }
+
+                        // Restore collected quest items
+                        foreach (string questItemName in saveData.CollectedQuestItems)
+                        {
+                            var questItem = _currentCountry.QuestItems.FirstOrDefault(q => q.Name == questItemName);
+                            if (questItem != null)
+                            {
+                                // Ensure that the collected quest item is properly added to the player's inventory
+                                _player.AddToInventory(questItem);
                             }
                         }
 
@@ -186,7 +203,7 @@ namespace Treasure_Hunter
         public static void CheckInventory(GameManager gameManager)
         {
             Console.WriteLine("\n------- Checking Inventory -------");
-            Console.WriteLine($"\nInventory for {gameManager.Player.Name}:");
+            Console.WriteLine($"\nInventory of {gameManager.Player.Name}:");
 
             if (gameManager.Player.Inventory.Count == 0)
             {
@@ -204,14 +221,15 @@ namespace Treasure_Hunter
             Console.ReadKey();
         }
 
+        // In LookQuest method (no changes to this, just ensure it's correctly working after loading)
         public static void LookQuest(GameManager gameManager)
         {
-            Console.WriteLine("\nYou still need to collect:");
+            Console.WriteLine("You still need to collect:");
 
             bool foundMissingItems = false;
             foreach (var item in gameManager.CurrentCountry.QuestItems)
             {
-                if (!gameManager.Player.HasItem(item.Name))
+                if (!gameManager.Player.HasItem(item.Name)) // Ensure HasItem method is correct
                 {
                     Console.WriteLine($"- {item.Name}");
                     foundMissingItems = true;
@@ -222,8 +240,7 @@ namespace Treasure_Hunter
             {
                 Console.WriteLine("You have collected all quest items in this country!");
             }
-
-            
         }
+
     }
 }

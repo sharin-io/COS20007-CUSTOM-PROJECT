@@ -119,7 +119,7 @@ class Program
                     CheckInventory(gameManager);
                     break;
                 case "3":
-                    LookQuest(gameManager);
+                    gameManager.LookQuest(); 
                     break;
                 case "4":
                     Console.WriteLine("More implementation will be added in version 2.0");
@@ -132,7 +132,7 @@ class Program
                     Console.ReadKey();
                     break;
                 case "6":
-                    return; // Exit to main menu
+                    return;
                 default:
                     Console.WriteLine("Invalid option.");
                     break;
@@ -200,7 +200,7 @@ class Program
     public static void CheckInventory(GameManager gameManager)
         {
             Console.WriteLine("\n------- Checking Inventory -------");
-            Console.WriteLine($"\nInventory for {gameManager.Player.Name}:");
+            Console.WriteLine($"\nInventory of {gameManager.Player.Name}:");
 
             if (gameManager.Player.Inventory.Count == 0)
             {
@@ -221,9 +221,13 @@ class Program
     public static void LookQuest(GameManager gameManager)
     {
         Console.WriteLine("You still need to collect:");
+
         bool foundMissingItems = false;
+
+        // Iterate through all quest items in the current country
         foreach (var item in gameManager.CurrentCountry.QuestItems)
         {
+            // Check if the player has the item
             if (!gameManager.Player.HasItem(item.Name))
             {
                 Console.WriteLine($"- {item.Name}");
@@ -231,11 +235,13 @@ class Program
             }
         }
 
+        // If no items were found to be missing, tell the player they've collected them all
         if (!foundMissingItems)
         {
             Console.WriteLine("You have collected all quest items in this country!");
         }
     }
+
 
     static void ExitGame()
     {

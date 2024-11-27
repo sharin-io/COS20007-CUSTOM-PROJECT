@@ -61,6 +61,32 @@ namespace Treasure_Hunter
             return false;
         }
 
+        public void LookQuest()
+        {
+            Console.WriteLine("\n------- Quest Status -------");
+            Console.WriteLine($"Location: {CurrentCountry.Name}");
+            Console.WriteLine("\nItems to collect:");
+
+            bool foundMissingItems = false;
+
+            foreach (var item in CurrentCountry.QuestItems)
+            {
+                if (!Player.HasItem(item.Name))
+                {
+                    Console.WriteLine($"- {item.Name}");
+                    foundMissingItems = true;
+                }
+            }
+
+            if (!foundMissingItems)
+            {
+                Console.WriteLine("You have collected all quest items in this country!");
+            }
+
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
+        }
+
         public void VisitShop(IShop shop)
         {
             if (_player == null)

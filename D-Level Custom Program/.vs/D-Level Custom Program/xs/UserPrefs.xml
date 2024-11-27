@@ -1,4 +1,23 @@
 ﻿<Properties StartupConfiguration="{7CADD2AF-183A-48A7-B38A-D295E98D9C9A}|Default">
-  <MonoDevelop.Ide.ItemProperties.Treasure_220Hunter FirstBuild="True" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.Treasure_220Hunter PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Treasure Hunter/Program.cs">
+    <Files>
+      <File FileName="Treasure Hunter/Program.cs" Line="37" Column="13" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="D-Level Custom Program" expanded="True">
+            <Node name="Treasure Hunter" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
 </Properties>
