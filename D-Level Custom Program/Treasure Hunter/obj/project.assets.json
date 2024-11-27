@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Tasks/6.4D - D Level Custom Program/6.4D/D-Level Custom Program/Treasure Hunter/Treasure Hunter.csproj",
+      "projectUniqueName": "/Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Porfolio/Distinction/6.4D/D-Level Custom Program/Treasure Hunter/Treasure Hunter.csproj",
       "projectName": "Treasure Hunter",
-      "projectPath": "/Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Tasks/6.4D - D Level Custom Program/6.4D/D-Level Custom Program/Treasure Hunter/Treasure Hunter.csproj",
+      "projectPath": "/Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Porfolio/Distinction/6.4D/D-Level Custom Program/Treasure Hunter/Treasure Hunter.csproj",
       "packagesPath": "/Users/sharin/.nuget/packages/",
-      "outputPath": "/Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Tasks/6.4D - D Level Custom Program/6.4D/D-Level Custom Program/Treasure Hunter/obj/",
+      "outputPath": "/Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Porfolio/Distinction/6.4D/D-Level Custom Program/Treasure Hunter/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/sharin/.nuget/NuGet/NuGet.Config"
@@ -38,11 +38,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -64,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.400/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.317/RuntimeIdentifierGraph.json"
       }
     }
   }
