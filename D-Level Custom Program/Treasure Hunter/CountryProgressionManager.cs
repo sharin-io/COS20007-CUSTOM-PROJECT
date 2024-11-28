@@ -1,4 +1,4 @@
-﻿using static Treasure_Hunter.Interface;
+using static Treasure_Hunter.Interface;
 using Treasure_Hunter;
 
 /// Manages the progression through different countries in the game.
@@ -10,16 +10,17 @@ public class CountryProgressionManager
     /// Index of the current country in the progression.
     private int _currentCountryIndex;
 
-    /// sets up the initial list of country factories.
     public CountryProgressionManager()
-    {
-        _countryFactories = new List<ICountryFactory>
         {
-            new JapanCountryFactory(),
-            new ChinaCountryFactory()
-        };
-        _currentCountryIndex = 0;
-    }
+            _countryFactories = new List<ICountryFactory>
+            {
+                new JapanCountryFactory(),
+                new ChinaCountryFactory(),
+                new MyanmarCountryFactory(),
+                new ThailandCountryFactory()
+            };
+            _currentCountryIndex = 0;
+        }
 
     /// Gets the first country in the progression.
     public Country GetFirstCountry()

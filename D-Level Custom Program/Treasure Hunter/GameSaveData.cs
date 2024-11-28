@@ -24,6 +24,9 @@ namespace Treasure_Hunter
 
         /// Gets or sets the date and time the game was saved.
         public DateTime SaveDate { get; set; }
+
+        private const int TRAVEL_COST = 50; 
+
     }
 
     /// Manages the game's main logic, including saving and loading game progress.
@@ -236,15 +239,17 @@ namespace Treasure_Hunter
             Console.ReadKey();
         }
 
-        // In LookQuest method (no changes to this, just ensure it's correctly working after loading)
+        // In LookQuest method 
         public static void LookQuest(GameManager gameManager)
         {
-            Console.WriteLine("You still need to collect:");
+            Console.WriteLine("\n------- Quest Status -------");
+            Console.WriteLine($"Location: {gameManager.CurrentCountry.Name}");
+            Console.WriteLine("\nItems to collect:");
 
             bool foundMissingItems = false;
             foreach (var item in gameManager.CurrentCountry.QuestItems)
             {
-                if (!gameManager.Player.HasItem(item.Name)) // Ensure HasItem method is correct
+                if (!gameManager.Player.HasItem(item.Name)) 
                 {
                     Console.WriteLine($"- {item.Name}");
                     foundMissingItems = true;
@@ -256,6 +261,9 @@ namespace Treasure_Hunter
                 Console.WriteLine("You have collected all quest items in this country!");
             }
         }
+
+        
+
 
     }
 }

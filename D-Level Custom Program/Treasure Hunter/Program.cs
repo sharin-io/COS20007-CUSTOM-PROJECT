@@ -1,4 +1,4 @@
-﻿namespace Treasure_Hunter;
+namespace Treasure_Hunter;
 using System.IO;
 using System;
 
@@ -126,12 +126,47 @@ class Program
                     gameManager.LookQuest(); 
                     break;
                 case "4":
-                    Console.WriteLine("More implementation will be added in version 2.0");
+                    Console.WriteLine("\nChoose your destination:");
+                    Console.WriteLine("1. Japan");
+                    Console.WriteLine("2. China");
+                    Console.WriteLine("3. Thailand");
+                    Console.WriteLine("4. Myanmar");
+
+                    Console.Write("\nEnter destination number (or 0 to cancel): ");
+
+                    if (int.TryParse(Console.ReadLine(), out int destination))
+                    {
+                        string countryName = destination switch
+                        {
+                            1 => "Japan",
+                            2 => "China",
+                            3 => "Thailand",
+                            4 => "Myanmar",
+                            _ => ""
+                        };
+
+                        if (!string.IsNullOrEmpty(countryName))
+                        {
+                            if (countryName == gameManager.CurrentCountry.Name)
+                            {
+                                Console.WriteLine("\nYou are already in this country!");
+                            }
+                            else if (gameManager.TryTravelToCountry(countryName))
+                            {
+                                Console.WriteLine($"\nTraveling to {countryName}...");
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nUnable to travel to that destination.");
+                            }
+                        }
+                    }
+                    Console.WriteLine("\nPress any key to continue...");
                     Console.ReadKey();
                     break;
                 case "5":
                     gameManager.SaveCurrentGame();
-                    Console.WriteLine("Game saved successfully!");
+                   
                     Console.WriteLine("Press any key to continue...");
                     Console.ReadKey();
                     break;
@@ -149,6 +184,7 @@ class Program
     {
         Console.Clear();
         Console.WriteLine($"\n----- Entering {gameManager.CurrentCountry.Name} -----");
+        Console.WriteLine($"Current Coins: {gameManager.Player.Coins}");  
         if ( gameManager.CurrentCountry.Name == "Japan")
         {
             Console.WriteLine("╔───────────────────────────────────────────────────────-─────────────╗");
@@ -161,6 +197,20 @@ class Program
             Console.WriteLine("                                       .\n              . .                     -:-             .  .  .\n            .'.:,'.        .  .  .     ' .           . \\ | / .\n            .'.;.`.       ._. ! ._.       \\          .__\\:/__.\n             `,:.'         ._\\!/_.                     .';`.      . ' .\n             ,'             . ! .        ,.,      ..======..       .:.\n            ,                 .         ._!_.     ||::: : | .        ',\n     .====.,                  .           ;  .~.===: : : :|   ..===.\n     |.::'||      .=====.,    ..=======.~,   |\"|: :|::::::|   ||:::|=====|\n  ___| :::|!__.,  |:::::|!_,   |: :: ::|\"|l_l|\"|:: |:;;:::|___!| ::|: : :|\n |: :|::: |:: |!__|; :: |: |===::: :: :|\"||_||\"| : |: :: :|: : |:: |:::::|\n |:::| _::|: :|:::|:===:|::|:::|:===F=:|\"!/|\\!\"|::F|:====:|::_:|: :|::__:|\n !_[]![_]_!_[]![]_!_[__]![]![_]![_][I_]!//_:_\\\\![]I![_][_]!_[_]![]_!_[__]!\n -----------------------------------\"---''''```---\"-----------------------\n _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ |= _ _:_ _ =| _ _ _ _ _ _ _ _ _ _ _ _\n                                     |=    :    =|                CHINA\n_____________________________________L___________J________________________\n--------------------------------------------------------------------------");
             Console.WriteLine("\n╚────────────────────────────────────────────────────────────────────--───╝");
         }
+
+        else if (gameManager.CurrentCountry.Name == "Thailand")
+        {
+            Console.WriteLine("╔───────────────────────────────────────────────────────-─────────────╗");
+            Console.WriteLine("           _/_/_/      \n         _/    _/     \n          _/_/        \n         _/    _/     THAILAND\n        _/_/_/        \n                     \n   _/_/_/_/_/       \n      _/           \n     _/           \n    _/            \n   _/             ");
+            Console.WriteLine("\n╚─────────────────────────────────────────────────────────────────────╝");
+        }
+        else if (gameManager.CurrentCountry.Name == "Myanmar")
+        {
+            Console.WriteLine("╔───────────────────────────────────────────────────────-─────────────╗");
+            Console.WriteLine("         /\\      /\\\n        /  \\    /  \\\n       /    \\  /    \\\n      /      \\/      \\    MYANMAR\n     /                \\\n    /      ______      \\\n   /      |    |       \\\n  /       |^^^^|        \\\n /        |^^^^|         \\\n          |^^^^|\n          |____| ");
+            Console.WriteLine("\n╚─────────────────────────────────────────────────────────────────────╝");
+        }
+
 
         Console.WriteLine($"Archeologist {gameManager.Player.Name}, you are in {gameManager.CurrentCountry.Name} and you have a quest to complete");
         LookQuest(gameManager);
@@ -276,7 +326,7 @@ class Program
             Console.WriteLine($"{i + 1}. {savedGames[i]}");
         }
 
-        Console.Write("\nEnter the number of the save to load (1 to cancel): ");
+        Console.Write("\nEnter the number of the save to load (or 0 to cancel): ");
         if (int.TryParse(Console.ReadLine(), out int choice) && choice > 0 && choice <= savedGames.Count)
         {
             string selectedSave = savedGames[choice - 1];

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using static System.Formats.Asn1.AsnWriter;
 using static Treasure_Hunter.Interface;
 
@@ -11,7 +11,8 @@ public class Player
     public List<ICollectible> Inventory { get; private set; }
 
     /// Gets the amount of coins the player currently holds.
-    public int Coins { get; private set; }
+   public int Coins { get; set; }
+
 
     /// Initializes a new instance of the <see cref="Player"/> class.
     public Player(string name)
@@ -32,5 +33,16 @@ public class Player
     {
         Inventory.Add(item);
     }
+
+// Spend coin
+        public bool SpendCoins(int amount)
+        {
+            if (Coins >= amount)
+            {
+                Coins -= amount;
+                return true;
+            }
+            return false;
+        }
 }
 

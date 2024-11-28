@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using static Treasure_Hunter.Interface;
@@ -12,6 +12,8 @@ namespace Treasure_Hunter
         private Player? _player; // nullable reference type
         private Country? _currentCountry;
         private CountryProgressionManager _countryProgression;
+        private const int TRAVEL_COST = 50; // Cost to travel between countries
+
 
         /// Gets or sets the player for the game.
         public Player Player
@@ -125,13 +127,33 @@ namespace Treasure_Hunter
                 var item = shop.GetItem(input);
                 if (item != null)
                 {
+                    // Add item to player's inventory
                     _player.AddToInventory(item);
+
+                    // Remove item from shop
                     shop.RemoveItem(item);
 
-                    // Special display for rare items
+                    // Add coins when collecting the item
+                    _player.Coins += item.Value;
+
+                    if (item.Name == "Samurai Sword")
+                    {
+                        Console.WriteLine("\n            /\\\n/vvvvvvvvvvvv \\--------------------------------------,\n`^^^^^^^^^^^^ /=====================================\"\n            \\/");
+                    }
+                    else if (item.Name == "Ancient Map")
+                    {
+                        Console.WriteLine("                 _,__        .:\n         Darwin <*  /        | \\\n            .-./     |.     :  :,\n           /           '-._/     \\_\n          /                '       \\\n        .'                         *: Brisbane\n     .-'                             ;\n     |                               |\n     \\                              /\n      |                            /\nPerth  \\*        __.--._          /\n        \\     _.'       \\:.       |\n        >__,-'             \\_/*_.-'\n                              Melbourne\n                             :--,\n                              '/");
+                    }
+                    else if (item.Name == "Golden Vase")
+                    {
+                        Console.WriteLine("   ,--,   \n   )\"\"(   \n  /    \\  \n /      \\ \n.        .\n|`-....-'|\n|        |\n|        |\n|`-....-'|\n|        |\n|        |\n `-....-' ");
+                    }
                     Console.WriteLine($"\nYou have collected {item.Name}!");
                     Console.WriteLine($"Description: {item.Description}");
+                    Console.WriteLine($"You earned {item.Value} coins!");
+                    Console.WriteLine($"Current coins: {_player.Coins}");
 
+                    // Check if all quest items are collected
                     if (_currentCountry != null && _currentCountry.AreAllQuestItemsCollected(_player))
                     {
                         Console.WriteLine("\nCongratulations! You have collected all items in this country!");
@@ -147,6 +169,41 @@ namespace Treasure_Hunter
                     Console.ReadKey();
                 }
             }
+        }
+        // Travel
+        public bool TryTravelToCountry(string countryName)
+        {
+            if (_player == null)
+            {
+                throw new InvalidOperationException("Player not initialized");
+            }
+
+            // Don't charge if player has completed current country's quest
+            if (!_currentCountry.AreAllQuestItemsCollected(_player))
+            {
+                // Check if player has enough coins
+                if (_player.Coins < TRAVEL_COST)
+                {
+                    Console.WriteLine($"\nNot enough coins to travel! You need {TRAVEL_COST} coins.");
+                    Console.WriteLine($"Current coins: {_player.Coins}");
+                    return false;
+                }
+
+                // Deduct travel cost
+                _player.Coins -= TRAVEL_COST;
+                Console.WriteLine($"\nTravel cost: {TRAVEL_COST} coins");
+                Console.WriteLine($"Remaining coins: {_player.Coins}");
+            }
+
+            // Get the requested country
+            var newCountry = _countryProgression.GetCountryByName(countryName);
+            if (newCountry != null)
+            {
+                _currentCountry = newCountry;
+                return true;
+            }
+
+            return false;
         }
     }
 }
