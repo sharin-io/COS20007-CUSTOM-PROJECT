@@ -7,21 +7,34 @@ using static Treasure_Hunter.Interface;
 
 namespace Treasure_Hunter
 {
+    /// Represents the structure of the game's save data.
     public class GameSaveData
     {
+        /// Gets or sets the player's name.
         public string PlayerName { get; set; }
+
+        /// Gets or sets the player's inventory as a list of item names.
         public List<string> Inventory { get; set; }
+
+        /// Gets or sets the name of the current country.
         public string CurrentCountry { get; set; }
+
+        /// Gets or sets the list of collected quest items' names.
         public List<string> CollectedQuestItems { get; set; }
+
+        /// Gets or sets the date and time the game was saved.
         public DateTime SaveDate { get; set; }
     }
 
+    /// Manages the game's main logic, including saving and loading game progress.
     public partial class GameManager
     {
         private const string SAVE_DIRECTORY = "SavedGames";
 
+        /// Retrieves all countries in the game progression.
         private List<Country> Countries => _countryProgression.GetAllCountries();
 
+        /// Saves the current game state to a JSON file.
         public void SaveCurrentGame(string saveFilePath = null)
         {
             try
@@ -60,7 +73,7 @@ namespace Treasure_Hunter
         }
 
 
-
+        /// Retrieves a list of saved game summaries.
         public List<string> GetSavedGames()
         {
             try
@@ -94,6 +107,7 @@ namespace Treasure_Hunter
             }
         }
 
+        /// Loads a saved game based on the player's selection.
         public bool LoadGame(string saveSelection)
         {
             try
@@ -166,6 +180,7 @@ namespace Treasure_Hunter
             }
         }
 
+        /// Finds an item by its name across all countries and shops.
         private ICollectible FindItemByName(string name)
         {
             // First check quest items

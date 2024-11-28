@@ -57,4 +57,4 @@
 /Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Porfolio/Distinction/6.4D/D-Level Custom Program/Treasure Hunter/obj/Debug/net7.0/Treasure Hunter.pdb
 /Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Porfolio/Distinction/6.4D/D-Level Custom Program/Treasure Hunter/obj/Debug/net7.0/Treasure Hunter.genruntimeconfig.cache
 /Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Porfolio/Distinction/6.4D/D-Level Custom Program/Treasure Hunter/obj/Debug/net7.0/ref/Treasure Hunter.dll
-/Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Porfolio/Distinction/6.4D/D-Level Custom Program/Treasure Hunter/obj/Debug/net7.0/Treasure Hunter.sourcelink.json
+/Users/sharin/Library/CloudStorage/OneDrive-student.newinti.edu.my/university/COS20007/Porfolio/Distinction/6.4D/D-Level Custom Program/Treasure Hunter/obj/Debug/net7.0/Treasure Hunter.csproj.AssemblyReference.cache

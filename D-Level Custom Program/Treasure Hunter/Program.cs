@@ -9,13 +9,14 @@ class Program
         // Create saves directory if it doesn't exist
         Directory.CreateDirectory("SavedGames");
 
-        Console.Title = "The Rare Item Collector Game";
+        Console.Title = "The Rare Treasure Hunter Game";
         DisplayGameIntro();
         MainMenu();
 
 
     }
 
+    // Displays the introductory screen of the game
     static void DisplayGameIntro()
     {
         Console.WriteLine(" _____                                                                                      _____ \n( ___ )------------------------------------------------------------------------------------( ___ )\n |   |                                                                                      |   | \n |   |  ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗██████╗ ███████╗██████╗ ██╗████████╗ |   | \n |   | ██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔════╝██╔══██╗██╔════╝██╔══██╗██║╚══██╔══╝ |   | \n |   | ██║  ███╗███████║██╔████╔██║█████╗      ██║     ██████╔╝█████╗  ██║  ██║██║   ██║    |   | \n |   | ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║     ██╔══██╗██╔══╝  ██║  ██║██║   ██║    |   | \n |   | ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╗██║  ██║███████╗██████╔╝██║   ██║    |   | \n |   |  ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝ ╚═╝   ╚═╝    |   | \n |___|                                                                                      |___| \n(_____)------------------------------------------------------------------------------------(_____)");
@@ -26,6 +27,7 @@ class Program
         Console.ReadKey();
     }
 
+    // Main menu where the player can choose to start a new game, load a saved game, or exit
     static void MainMenu()
     {
         GameManager gameManager = new GameManager();
@@ -57,6 +59,7 @@ class Program
         }
     }
 
+    // Method for creating a new player
     static void CreateNewPlayer(GameManager gameManager)
     {
         Console.WriteLine("\n----- Creating a New Player -----");
@@ -80,6 +83,7 @@ class Program
         PlayGame(gameManager);
     }
 
+    // Main gameplay loop for managing the player's progress and actions
     public static void PlayGame(GameManager gameManager)
     {
         while (true)
@@ -140,6 +144,7 @@ class Program
         }
     }
 
+    // Displays the menu for actions available in the current country
     static void DisplayCountryMenu(GameManager gameManager)
     {
         Console.Clear();

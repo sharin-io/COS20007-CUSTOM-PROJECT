@@ -5,39 +5,42 @@ using static Treasure_Hunter.Interface;
 
 namespace Treasure_Hunter
 {
+    /// Manages the core game logic, including player initialization,
+    /// country progression, quest status, and shop interactions.
     public partial class GameManager
     {
-        private Player? _player;
+        private Player? _player; // nullable reference type
         private Country? _currentCountry;
         private CountryProgressionManager _countryProgression;
 
-        // Modified to include setters
+        /// Gets or sets the player for the game.
         public Player Player
         {
             get => _player ?? throw new InvalidOperationException("Player not initialized");
             private set => _player = value;
         }
 
+        /// Gets or sets the current country the player is in.
         public Country CurrentCountry
         {
             get => _currentCountry ?? throw new InvalidOperationException("Current country not set");
             private set => _currentCountry = value;
         }
 
+        /// Initializes a new instance of the <see cref="GameManager"/> class.
         public GameManager()
         {
             _countryProgression = new CountryProgressionManager();
         }
 
+        /// Starts a new game by initializing the player and setting the starting country.
         public void StartNewGame(string playerName)
         {
-            // Create player
             _player = new Player(playerName);
-
-            // Set initial country 
             _currentCountry = _countryProgression.GetFirstCountry();
         }
 
+        /// Attempts to progress to the next country if all quest items in the current country are collected.
         public bool TryProgressToNextCountry()
         {
             if (_player == null)
@@ -45,12 +48,9 @@ namespace Treasure_Hunter
                 throw new InvalidOperationException("Player not initialized");
             }
 
-            // Check if all quest items are collected
             if (_currentCountry != null && _currentCountry.AreAllQuestItemsCollected(_player))
             {
-                // Try to get next country
                 var nextCountry = _countryProgression.GetNextCountry();
-
                 if (nextCountry != null)
                 {
                     _currentCountry = nextCountry;
@@ -61,6 +61,7 @@ namespace Treasure_Hunter
             return false;
         }
 
+        /// Displays the player's quest status, including missing quest items in the current country.
         public void LookQuest()
         {
             Console.WriteLine("\n------- Quest Status -------");
@@ -87,6 +88,7 @@ namespace Treasure_Hunter
             Console.ReadKey();
         }
 
+        /// Allows the player to visit a shop, view available items, and collect items.
         public void VisitShop(IShop shop)
         {
             if (_player == null)
@@ -123,27 +125,13 @@ namespace Treasure_Hunter
                 var item = shop.GetItem(input);
                 if (item != null)
                 {
-                    // Add item to player's inventory
                     _player.AddToInventory(item);
-
-                    // Remove item from shop
                     shop.RemoveItem(item);
-                    if (item.Name == "Samurai Sword")
-                    {
-                        Console.WriteLine("\n            /\\\n/vvvvvvvvvvvv \\--------------------------------------,\n`^^^^^^^^^^^^ /=====================================\"\n            \\/");
-                    }
-                    else if (item.Name == "Ancient Map")
-                    {
-                        Console.WriteLine("                 _,__        .:\n         Darwin <*  /        | \\\n            .-./     |.     :  :,\n           /           '-._/     \\_\n          /                '       \\\n        .'                         *: Brisbane\n     .-'                             ;\n     |                               |\n     \\                              /\n      |                            /\nPerth  \\*        __.--._          /\n        \\     _.'       \\:.       |\n        >__,-'             \\_/*_.-'\n                              Melbourne\n                             :--,\n                              '/");
-                    }
-                    else if (item.Name == "Golden Vase")
-                    {
-                        Console.WriteLine("   ,--,   \n   )\"\"(   \n  /    \\  \n /      \\ \n.        .\n|`-....-'|\n|        |\n|        |\n|`-....-'|\n|        |\n|        |\n `-....-' ");
-                    }
+
+                    // Special display for rare items
                     Console.WriteLine($"\nYou have collected {item.Name}!");
                     Console.WriteLine($"Description: {item.Description}");
 
-                    // Check if all quest items are collected
                     if (_currentCountry != null && _currentCountry.AreAllQuestItemsCollected(_player))
                     {
                         Console.WriteLine("\nCongratulations! You have collected all items in this country!");
@@ -160,7 +148,5 @@ namespace Treasure_Hunter
                 }
             }
         }
-
-        
     }
 }
